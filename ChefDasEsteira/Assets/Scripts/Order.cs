@@ -8,13 +8,13 @@ public class Order : MonoBehaviour
     private float waitTimer;
     public float maxWaitTime;
 
-    public Order(List<Dish> possibleDishes)
-    {
-        MakeAnOrder(possibleDishes);
-    }
-
     public void MakeAnOrder(List<Dish> possibleDishes)
     {
-        // aleatoriza quantas dishes serão, assim como quais serão        
+        int numberOfDishes = Random.Range(0, 3);
+
+        for(int i = 0 ; i < numberOfDishes ; ++i)
+        {
+            dishesOrdered.Add(possibleDishes[Random.Range(0, possibleDishes.Count)]);
+        }
     }
 }

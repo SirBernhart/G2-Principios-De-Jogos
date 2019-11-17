@@ -1366,6 +1366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleIngredients:
   - {fileID: 923827081539361104, guid: 837fdcb9dbb209f43bfb9140395b6986, type: 3}
+  spawnedIngredients: []
   timeBetweenIngredients: 3
   moveSpeed: 2
   spawnpoint: {fileID: 5565658}
@@ -1688,7 +1689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -283, y: -26}
+  m_AnchoredPosition: {x: -283, y: -11.1}
   m_SizeDelta: {x: 60.9, y: 43.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1887291026
@@ -1708,7 +1709,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 7
+  m_ChildAlignment: 3
   m_Spacing: 20
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
@@ -1881,6 +1882,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleDishes: []
+  timeBetweenOrders: 2
+  orderSheet: {fileID: 8935228811355859803, guid: 83ddb8fb5caf98e469c5c21a2ad9b12c,
+    type: 3}
+  orderSheetParent: {fileID: 1887291025}
 --- !u!1 &2106353798
 GameObject:
   m_ObjectHideFlags: 0
