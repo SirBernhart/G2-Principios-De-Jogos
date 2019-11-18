@@ -4,35 +4,73 @@ using UnityEngine;
 
 public class Chef : MonoBehaviour
 {
-    private GameObject currentIngredient;
+    private GameObject currentlyHolding;
     [SerializeField] private Transform holdPosition;
 
-    public void HoldIngredient(GameObject ingredient)
+    public void HoldObject(GameObject objectToHold)
     {
-        if(currentIngredient == null)
+        if(currentlyHolding == null)
         {
-            currentIngredient = ingredient;
-            if (ingredient.GetComponent<Ingredient>().isInEsteira)
+            currentlyHolding = objectToHold;
+
+            // If it is and ingredient
+            Ingredient ingScriptRef = objectToHold.GetComponent<Ingredient>();
+            if (ingScriptRef != null)
             {
-                ingredient.GetComponent<Ingredient>().RemoveFromEsteira();
+                if (ingScriptRef.isInEsteira)
+                {
+                    ingScriptRef.LeaveCurrentSpace();
+                }
             }
-            ingredient.transform.SetParent(holdPosition, false);
-            ingredient.transform.localPosition = Vector2.zero;
+
+            currentlyHolding.transform.SetParent(holdPosition, false);
+            currentlyHolding.transform.localPosition = Vector2.zero;
         }
     }
 
-    public void ReleaseIngredient()
+    public void PlaceDishOnPlate(GameObject plate)
     {
-        currentIngredient = null;
+        if (IsHoldingSomething())
+        {
+            if(currentlyHolding.GetComponent<Dish>() != null)
+            {
+                if (plate.GetComponent<Plate>().TryToAddDish(currentlyHolding))
+                {
+                    currentlyHolding = null;
+                }
+            }
+        }
+    }
+
+    public void PlaceIngredientOnPreparationTable(GameObject preparationTable)
+    {
+        if (IsHoldingSomething())
+        {
+            if(currentlyHolding.GetComponent<Ingredient>() != null)
+            {
+                bool result = preparationTable.GetComponent<DishManager>().TryAddIngredientToTable(currentlyHolding);
+                if (result)
+                {
+                    currentlyHolding = null;
+                }
+            }
+        }
+    }
+
+    public void SetNewHeldObjectParent(Transform newParent)
+    {
+        currentlyHolding.transform.SetParent(newParent, false);
+        currentlyHolding.transform.localPosition = Vector2.zero;
+        currentlyHolding = null;
     }
 
     public Ingredient.names GetIngredientName()
     {
-        return currentIngredient.GetComponent<Ingredient>().ingredientName;
+        return currentlyHolding.GetComponent<Ingredient>().ingredientName;
     }
 
-    public bool IsHoldingIngredient()
+    public bool IsHoldingSomething()
     { 
-        return currentIngredient != null;
+        return currentlyHolding != null;
     }
 }

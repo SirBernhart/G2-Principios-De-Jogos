@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Sashimi de Salmao
   m_EditorClassIdentifier: 
   requiredIngredients:
-  - {fileID: 3530906303223104983, guid: 837fdcb9dbb209f43bfb9140395b6986, type: 3}
+  - {fileID: 923827081539361104, guid: 837fdcb9dbb209f43bfb9140395b6986, type: 3}

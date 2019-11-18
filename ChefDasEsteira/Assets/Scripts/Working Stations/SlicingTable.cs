@@ -20,7 +20,6 @@ public class SlicingTable : MonoBehaviour
         switch (chefRef.GetIngredientName())
         {
             case Ingredient.names.Salmao:
-                chefRef.ReleaseIngredient();
 
                 MakeNewIngredient(Ingredient.names.SalmaoFatiado);
                 break;
