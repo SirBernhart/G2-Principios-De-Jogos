@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Ingredient : MonoBehaviour
 {
-    public enum names { Salmao, Atum, Camarao, Arroz, Alga,
-                                SalmaoFatiado, AtumFatiado, CamaraoFatiado, ArrozCozido }
-    public names ingredientName;
-
-    public bool isInEsteira = true;
+    [HideInInspector] public bool isInEsteira = false;
+    public List<GameObject> requiredIngredients;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
