@@ -19,11 +19,14 @@ public class OrderManager : MonoBehaviour
     private float timerForNextOrder;
     private void Update()
     {
-        timerForNextOrder += Time.deltaTime;
-        if(timerForNextOrder >= timeBetweenOrders)
+        if(currentOrders.Count <= 4)
         {
-            timerForNextOrder = 0;
-            GetNewOrder();
+            timerForNextOrder += Time.deltaTime;
+            if(timerForNextOrder >= timeBetweenOrders)
+            {
+                timerForNextOrder = 0;
+                GetNewOrder();
+            }
         }
     }
 
