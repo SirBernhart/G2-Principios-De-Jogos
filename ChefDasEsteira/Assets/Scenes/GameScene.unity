@@ -885,7 +885,6 @@ GameObject:
   - component: {fileID: 647118397}
   - component: {fileID: 647118399}
   - component: {fileID: 647118398}
-  - component: {fileID: 647118400}
   m_Layer: 0
   m_Name: Balcao Pratos
   m_TagString: Untagged
@@ -951,22 +950,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647118396}
   m_CullTransparentMesh: 0
---- !u!114 &647118400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 647118396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6433ba50a46acb145951796b54b9aff7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  possibleDishes: []
-  ingredientSlots: []
-  dishSlot: {fileID: 0}
-  prepareDishButton: {fileID: 0}
 --- !u!1 &786411684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2706,7 +2689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dishManager: {fileID: 804465632}
-  timeBetweenOrders: 2
+  timeBetweenOrders: 10
   orderSheet: {fileID: 8935228811355859803, guid: 83ddb8fb5caf98e469c5c21a2ad9b12c,
     type: 3}
   orderSheetParent: {fileID: 1887291025}
