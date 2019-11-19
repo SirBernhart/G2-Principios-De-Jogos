@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ingredient : MonoBehaviour
 {
-    [HideInInspector] public bool isInEsteira = false;
+    [HideInInspector] public bool isInEsteira;
     public List<GameObject> requiredIngredients;
 
     private void OnCollisionEnter2D(Collision2D collision)
