@@ -21,19 +21,23 @@ public class ClickManager : MonoBehaviour
             {
                 Chef chefRef = gameObject.GetComponent<Chef>();
                 // If the object is an Ingredient
-                if (hit.collider.gameObject.GetComponent<Ingredient>() != null)
+                if (hit.collider.GetComponent<Ingredient>() != null)
                 {
                     chefRef.HoldObject(hit.collider.gameObject);
                 }
-                else if (hit.collider.gameObject.GetComponent<DishManager>() != null)
+                else if (hit.collider.GetComponent<DishManager>() != null)
                 {
                     chefRef.PlaceIngredientOnPreparationTable(hit.collider.gameObject);
                 }
-                else if(hit.collider.gameObject.GetComponent<Dish>() != null)
+                else if (hit.collider.GetComponent<WorkingStation>())
+                {
+                    chefRef.PlaceIngredientOnWorkingStation(hit.collider.gameObject);
+                }
+                else if(hit.collider.GetComponent<Dish>() != null)
                 {
                     chefRef.HoldObject(hit.collider.gameObject);
                 }
-                else if (hit.collider.gameObject.GetComponent<Plate>() != null)
+                else if (hit.collider.GetComponent<Plate>() != null)
                 {
                     chefRef.PlaceDishOnPlate(hit.collider.gameObject);
                 }
