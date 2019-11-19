@@ -5,12 +5,13 @@ using UnityEngine;
 public class Order : MonoBehaviour
 {
     private List<GameObject> dishesOrdered = new List<GameObject>();
+    [SerializeField] private GameObject orderPopup;
     private float waitTimer;
     public float maxWaitTime;
 
     public void MakeAnOrder(List<GameObject> possibleDishes)
     {
-        int numberOfDishes = Random.Range(1, 5);
+        int numberOfDishes = 1;//Random.Range(1, 5);
 
         for(int i = 0 ; i < numberOfDishes ; ++i)
         {
@@ -18,6 +19,11 @@ public class Order : MonoBehaviour
             Debug.Log(dishesOrdered[i].name);
         }
         Debug.Log("------------------");
+    }
+
+    public void AssembleOrderPopup()
+    {
+        //orderPopup.
     }
 
     public GameObject CheckIfDishesCompleteOrder(List<GameObject> dishes)
@@ -53,5 +59,10 @@ public class Order : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void OpenPopup()
+    {
+        orderPopup.SetActive(true);
     }
 }
