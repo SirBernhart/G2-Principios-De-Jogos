@@ -7,8 +7,6 @@ public class WorkingStation : MonoBehaviour
 {
     [SerializeField] private List<GameObject> acceptableIngredients;
     [SerializeField] private List<GameObject> possibleNewIngredients;
-    [SerializeField] private Image stationImage;
-    [SerializeField] private Chef chefRef;
 
     private void OnMouseEnter()
     {
@@ -45,7 +43,9 @@ public class WorkingStation : MonoBehaviour
         {
             if(possibleNewIngredients[i].GetComponent<Ingredient>().requiredIngredients[0].name + "(Clone)" == transform.GetChild(1).name)
             {
-                Instantiate(possibleNewIngredients[i], transform).GetComponent<Ingredient>().isInEsteira = false ;
+                GameObject newIngredient = Instantiate(possibleNewIngredients[i], transform);
+                newIngredient.GetComponent<Ingredient>().isInEsteira = false;
+                newIngredient.transform.localPosition = Vector2.zero;
                 Destroy(transform.GetChild(1).gameObject);
             }
         }
