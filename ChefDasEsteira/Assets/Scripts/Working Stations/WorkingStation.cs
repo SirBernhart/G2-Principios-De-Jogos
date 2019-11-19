@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SlicingTable : MonoBehaviour
+public class WorkingStation : MonoBehaviour
 {
     [SerializeField] private List<GameObject> acceptableIngredients;
     [SerializeField] private List<GameObject> possibleNewIngredients;
@@ -15,7 +15,20 @@ public class SlicingTable : MonoBehaviour
         // Indica se o ingrediente selecionado é tratavel nessa estação ou não
     }
 
-    private void OnMouseUp()
+    public bool TryPlaceIngredient(GameObject ingredient)
+    {
+        for(int i = 0 ; i < acceptableIngredients.Count ; ++i)
+        {
+            if(acceptableIngredients[i].name+"(Clone)" == ingredient.name)
+            {
+                ingredient.transform.SetParent(transform, false);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /*private void OnMouseUp()
     {
         switch (chefRef.GetIngredientName())
         {
@@ -24,15 +37,16 @@ public class SlicingTable : MonoBehaviour
                 MakeNewIngredient(Ingredient.names.SalmaoFatiado);
                 break;
         }
-    }
+    }*/
 
-    private void MakeNewIngredient(Ingredient.names ingName)
+    public void MakeNewIngredient()
     {
         for(int i = 0 ; i < possibleNewIngredients.Count ; ++i)
         {
-            if(possibleNewIngredients[i].GetComponent<Ingredient>().ingredientName == ingName)
+            if(possibleNewIngredients[i].GetComponent<Ingredient>().requiredIngredients[0].name + "(Clone)" == transform.GetChild(1).name)
             {
-                Instantiate(possibleNewIngredients[i], transform);
+                Instantiate(possibleNewIngredients[i], transform).GetComponent<Ingredient>().isInEsteira = false ;
+                Destroy(transform.GetChild(1).gameObject);
             }
         }
     }
