@@ -80,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 7207351698912905545, guid: 837fdcb9dbb209f43bfb9140395b6986,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 44.27
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 7207351698912905545, guid: 837fdcb9dbb209f43bfb9140395b6986,
         type: 3}
@@ -117,6 +117,32 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4307225826704956857, guid: 837fdcb9dbb209f43bfb9140395b6986,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fbbdd15ab97e2ae4c95563caa5c3eaa3,
+        type: 3}
+    - target: {fileID: 4307225826704956857, guid: 837fdcb9dbb209f43bfb9140395b6986,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307225826704956857, guid: 837fdcb9dbb209f43bfb9140395b6986,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307225826704956857, guid: 837fdcb9dbb209f43bfb9140395b6986,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307225826704956857, guid: 837fdcb9dbb209f43bfb9140395b6986,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3530906303223104983, guid: 837fdcb9dbb209f43bfb9140395b6986,
         type: 3}
       propertyPath: requiredIngredients.Array.size
@@ -128,5 +154,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 923827081539361104, guid: 837fdcb9dbb209f43bfb9140395b6986,
         type: 3}
+    - target: {fileID: 7531255858739508438, guid: 837fdcb9dbb209f43bfb9140395b6986,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 125.85859
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531255858739508438, guid: 837fdcb9dbb209f43bfb9140395b6986,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 72.875984
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 837fdcb9dbb209f43bfb9140395b6986, type: 3}
