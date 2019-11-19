@@ -41,6 +41,10 @@ public class ClickManager : MonoBehaviour
                 {
                     chefRef.PlaceDishOnPlate(hit.collider.gameObject);
                 }
+                else if(hit.collider.tag == "Lixeira")
+                {
+                    chefRef.DiscardObject();
+                }
             }
         }        
     }
