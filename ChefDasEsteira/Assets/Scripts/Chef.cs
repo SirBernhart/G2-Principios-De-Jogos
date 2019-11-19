@@ -28,6 +28,20 @@ public class Chef : MonoBehaviour
         }
     }
 
+    public void PlaceIngredientOnWorkingStation(GameObject workingStation)
+    {
+        if (IsHoldingSomething())
+        {
+            if (currentlyHolding.GetComponent<Ingredient>() != null)
+            {
+                if (workingStation.GetComponent<WorkingStation>().TryPlaceIngredient(currentlyHolding))
+                {
+                    currentlyHolding = null;
+                }
+            }
+        }
+    }
+
     public void PlaceDishOnPlate(GameObject plate)
     {
         if (IsHoldingSomething())
@@ -62,11 +76,6 @@ public class Chef : MonoBehaviour
         currentlyHolding.transform.SetParent(newParent, false);
         currentlyHolding.transform.localPosition = Vector2.zero;
         currentlyHolding = null;
-    }
-
-    public Ingredient.names GetIngredientName()
-    {
-        return currentlyHolding.GetComponent<Ingredient>().ingredientName;
     }
 
     public bool IsHoldingSomething()
