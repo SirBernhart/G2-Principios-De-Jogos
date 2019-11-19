@@ -71,6 +71,12 @@ public class Chef : MonoBehaviour
         }
     }
 
+    public void DiscardObject()
+    {
+        Destroy(currentlyHolding);
+        currentlyHolding = null;
+    }
+
     public void SetNewHeldObjectParent(Transform newParent)
     {
         currentlyHolding.transform.SetParent(newParent, false);
