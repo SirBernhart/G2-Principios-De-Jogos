@@ -7,15 +7,6 @@ public class Dish : MonoBehaviour
     [SerializeField] private List<GameObject> requiredIngredients;
     public int pointsReward;
 
-    /*public void LeaveCurrentSpace()
-    {
-        DishManager dishManagerRef = transform.parent.parent.GetComponent<DishManager>();
-        if (dishManagerRef != null)
-        {
-            dishManagerRef.dishSlot
-        }
-    }*/
-
     public bool CheckIfIngredientMatchRecipe(List<GameObject> ingredients)
     {
         if (ingredients.Count != requiredIngredients.Count)

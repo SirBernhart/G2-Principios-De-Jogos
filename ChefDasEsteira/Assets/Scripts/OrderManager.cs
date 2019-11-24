@@ -60,8 +60,7 @@ public class OrderManager : MonoBehaviour
 
     public void CompleteOrder(GameObject completedOrder)
     {
-        Debug.Log("Completou!");
-        sm.IncreaseScore(5);
+        sm.IncreaseScore(completedOrder.GetComponent<Order>().totalScore);
         currentOrders.Remove(completedOrder);
         Destroy(completedOrder);
     }

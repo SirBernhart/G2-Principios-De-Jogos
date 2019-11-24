@@ -10,6 +10,7 @@ public class Order : MonoBehaviour
     private Image orderTimer;
     private float waitTimer;
     public float maxWaitTime;
+    public int totalScore;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class Order : MonoBehaviour
         for(int i = 0 ; i < numberOfDishes ; ++i)
         {
             dishesOrdered.Add(possibleDishes[Random.Range(0, possibleDishes.Count)]);
+            totalScore += dishesOrdered[dishesOrdered.Count - 1].GetComponent<Dish>().pointsReward;
         }
     }
 
