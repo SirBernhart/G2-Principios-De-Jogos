@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7000a435bb10e54b90ff1420982d393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxErrorsAllowed: 1
+  maxErrorsAllowed: 3
   endGameFadeOut: {fileID: 441835580}
 --- !u!1001 &1324064761
 PrefabInstance:
