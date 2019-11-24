@@ -165,4 +165,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderTimerRef: {fileID: 2855383212281189100}
-  maxWaitTime: 5
+  maxWaitTime: 20
