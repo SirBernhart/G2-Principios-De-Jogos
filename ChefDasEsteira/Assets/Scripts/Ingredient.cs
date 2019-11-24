@@ -23,16 +23,5 @@ public class Ingredient : MonoBehaviour
             isInEsteira = false;
             transform.parent.parent.GetComponent<EsteiraManager>().spawnedIngredients.Remove(gameObject);
         }
-        /*else
-        {
-            //CuttingBoard
-            //DishManager
-            DishManager dishManagerRef = transform.parent.GetComponent<DishManager>();
-            if(dishManagerRef != null)
-            {
-                dishManagerRef.RemoveElement();
-            }
-            //Plate
-        }*/
     }
 }
