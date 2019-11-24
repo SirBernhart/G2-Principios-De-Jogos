@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private int maxErrorsAllowed;
     private int errorCount;
+    private bool isFinishing = false;
+    [SerializeField] private GameObject endGameFadeOut;
 
 
     public void IncreaseErrorCount(int errorIncrement)
     {
         errorCount += errorIncrement;
-        if(errorCount >= maxErrorsAllowed)
+        if(!isFinishing && errorCount >= maxErrorsAllowed)
         {
             EndGame();
         }
@@ -26,8 +29,12 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        // Load results screen
-        Debug.Log("Game over!");
+        endGameFadeOut.SetActive(true);
+        Invoke("LoadGameOver", 3f);
     }
 
+    public void LoadGameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
 }
