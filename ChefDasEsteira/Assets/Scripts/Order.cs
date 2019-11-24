@@ -1,13 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Order : MonoBehaviour
 {
     private List<GameObject> dishesOrdered = new List<GameObject>();
-    [SerializeField] private GameObject orderPopup;
+    [SerializeField] private GameObject orderTimerRef;
+    private Image orderTimer;
     private float waitTimer;
     public float maxWaitTime;
+
+    private void Start()
+    {
+        orderTimer = orderTimerRef.GetComponent<Image>();
+        waitTimer = maxWaitTime;
+    }
+
+    private void Update()
+    {
+        waitTimer -= Time.deltaTime;
+        if(waitTimer <= 0)
+        {
+            transform.parent.parent.GetComponent<OrderManager>().FailOrder(gameObject);
+        }
+        orderTimer.fillAmount = waitTimer / maxWaitTime;
+    }
 
     public void MakeAnOrder(List<GameObject> possibleDishes)
     {
@@ -16,14 +34,7 @@ public class Order : MonoBehaviour
         for(int i = 0 ; i < numberOfDishes ; ++i)
         {
             dishesOrdered.Add(possibleDishes[Random.Range(0, possibleDishes.Count)]);
-            Debug.Log(dishesOrdered[i].name);
         }
-        Debug.Log("------------------");
-    }
-
-    public void AssembleOrderPopup()
-    {
-        //orderPopup.
     }
 
     public GameObject CheckIfDishesCompleteOrder(List<GameObject> dishes)
@@ -59,10 +70,5 @@ public class Order : MonoBehaviour
             }
         }
         return null;
-    }
-
-    public void OpenPopup()
-    {
-        orderPopup.SetActive(true);
     }
 }

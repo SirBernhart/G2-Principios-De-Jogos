@@ -5,6 +5,7 @@ using UnityEngine;
 public class OrderManager : MonoBehaviour
 {
     [SerializeField] private GameObject dishManager;
+    [SerializeField] private GameManager gm;
     private List<GameObject> currentOrders = new List<GameObject>();
 
     [SerializeField] private float timeBetweenOrders;
@@ -47,6 +48,13 @@ public class OrderManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void FailOrder(GameObject failedOrder)
+    {
+        gm.IncreaseErrorCount(1);
+        currentOrders.Remove(failedOrder);
+        Destroy(failedOrder);
     }
 
     public void CompleteOrder(GameObject completedOrder)
