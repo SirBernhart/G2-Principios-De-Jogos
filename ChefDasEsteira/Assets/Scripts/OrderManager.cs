@@ -6,6 +6,7 @@ public class OrderManager : MonoBehaviour
 {
     [SerializeField] private GameObject dishManager;
     [SerializeField] private GameManager gm;
+    [SerializeField] private ScoreManager sm;
     private List<GameObject> currentOrders = new List<GameObject>();
 
     [SerializeField] private float timeBetweenOrders;
@@ -60,6 +61,7 @@ public class OrderManager : MonoBehaviour
     public void CompleteOrder(GameObject completedOrder)
     {
         Debug.Log("Completou!");
+        sm.IncreaseScore(5);
         currentOrders.Remove(completedOrder);
         Destroy(completedOrder);
     }
