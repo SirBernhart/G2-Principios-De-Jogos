@@ -2925,10 +2925,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1885005609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9fae461d3b21de418e647663068e3b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 88052601f17f67344b0c78969c33dd74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preparationTableButton: {fileID: 1354156622}
+  preparationTableButton: {fileID: 0}
+  maxDoubleClickTime: 0.3
 --- !u!114 &1885005613
 MonoBehaviour:
   m_ObjectHideFlags: 0
