@@ -15,6 +15,9 @@ public class WorkingStation : MonoBehaviour
 
     public bool TryPlaceIngredient(GameObject ingredient)
     {
+        if (acceptableIngredients.Count == 0)
+            return true;
+
         for(int i = 0 ; i < acceptableIngredients.Count ; ++i)
         {
             if(acceptableIngredients[i].name+"(Clone)" == ingredient.name)
