@@ -5,7 +5,7 @@ using UnityEngine;
 public class Chef : MonoBehaviour
 {
     private GameObject currentlyHolding;
-    [SerializeField] private Transform holdPosition;
+    //[SerializeField] private Transform holdPosition;
 
     public void HoldObject(GameObject objectToHold)
     {
@@ -23,7 +23,7 @@ public class Chef : MonoBehaviour
                 }
             }
 
-            currentlyHolding.transform.SetParent(holdPosition, false);
+            //currentlyHolding.transform.SetParent(holdPosition, false);
             currentlyHolding.transform.localPosition = Vector2.zero;
         }
     }
