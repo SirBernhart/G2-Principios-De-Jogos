@@ -7,8 +7,11 @@ public class DragAndDrop : MonoBehaviour
     [SerializeField] RectTransform preparationTableButton;
     private bool isCountingDoubleClick;
     [SerializeField] private float maxDoubleClickTime;
-
+    private GameObject currentHeldGameObject;
+    private Vector2 heldGameObjectOriginalPosition;
     private float doubleClickTimer;
+    private Vector2 referenceVector2 = new Vector2();
+
     void Update()
     {
         if (isCountingDoubleClick)
@@ -21,20 +24,16 @@ public class DragAndDrop : MonoBehaviour
             }
         }
 
-        if (RectTransformUtility.RectangleContainsScreenPoint(preparationTableButton, Input.mousePosition))
-        { 
-            //ignore the click 
-        }
-        else if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            Vector2 mousePos2D = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            currentHeldGameObject = GetObjectUnderMouse();
 
-            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-            if(hit.collider != null)
+            if (currentHeldGameObject != null)
             {
+                heldGameObjectOriginalPosition = currentHeldGameObject.transform.localPosition;
                 Chef chefRef = gameObject.GetComponent<Chef>();
-                // If the object is an Ingredient
-                if (hit.collider.GetComponent<Ingredient>() != null)
+
+                if (currentHeldGameObject.tag == "Ingrediente" || currentHeldGameObject.tag == "Dish")
                 {
                     if (!isCountingDoubleClick)
                     {
@@ -42,32 +41,112 @@ public class DragAndDrop : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Double click");
-                        //Do double click
+                        isCountingDoubleClick = false;
+                        ExecuteStationAction();
                     }
-                    //chefRef.HoldObject(hit.collider.gameObject);
                 }
-                else if (hit.collider.GetComponent<DishManager>() != null)
+                else
                 {
-                    chefRef.PlaceIngredientOnPreparationTable(hit.collider.gameObject);
-                }
-                else if (hit.collider.GetComponent<WorkingStation>())
-                {
-                    chefRef.PlaceIngredientOnWorkingStation(hit.collider.gameObject);
-                }
-                else if(hit.collider.GetComponent<Dish>() != null)
-                {
-                    chefRef.HoldObject(hit.collider.gameObject);
-                }
-                else if (hit.collider.GetComponent<Plate>() != null)
-                {
-                    chefRef.PlaceDishOnPlate(hit.collider.gameObject);
-                }
-                else if(hit.collider.tag == "Lixeira")
-                {
-                    chefRef.DiscardObject();
+                    currentHeldGameObject = null;
+                    return;
                 }
             }
-        }        
+        }
+        if (Input.GetMouseButton(0))
+        {
+            if(currentHeldGameObject != null && (currentHeldGameObject.tag == "Ingrediente" || currentHeldGameObject.tag == "Dish")
+                && Vector2.Distance(heldGameObjectOriginalPosition, new Vector2(Input.mousePosition.x, Input.mousePosition.y)) > 10)
+            {
+                currentHeldGameObject.GetComponent<Collider2D>().enabled = false;
+
+                if (currentHeldGameObject.tag == "Ingrediente")
+                {
+                    currentHeldGameObject.GetComponent<Ingredient>().isBeingDragged = true;
+                }
+                else if(currentHeldGameObject.tag == "Dish")
+                {
+                    currentHeldGameObject.GetComponent<Dish>().isBeingDragged = true;
+                }
+                
+                currentHeldGameObject.transform.position =
+                    Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+            }
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (currentHeldGameObject != null && currentHeldGameObject.GetComponent<Ingredient>().isBeingDragged)
+            {
+                GameObject cliquedGameObject = GetObjectUnderMouse();
+
+                bool willReturn = true;
+                if(cliquedGameObject != null)
+                {
+                    if (cliquedGameObject.GetComponent<WorkingStation>() != null)
+                    {
+                        if (cliquedGameObject.GetComponent<WorkingStation>().TryPlaceIngredient(currentHeldGameObject))
+                        {
+                            willReturn = false;
+                        }
+                    }
+                    else if(cliquedGameObject.GetComponent<DishManager>() != null)
+                    {
+                        if (cliquedGameObject.GetComponent<DishManager>().TryAddIngredientToTable(currentHeldGameObject))
+                        {
+                            willReturn = false;
+                        }
+                    }
+                    else if (cliquedGameObject.GetComponent<Plate>() != null)
+                    {
+                        if (cliquedGameObject.GetComponent<Plate>().TryToAddDish(currentHeldGameObject))
+                        {
+                            willReturn = false;
+                        }
+                    }
+                    else if (cliquedGameObject.tag == "Lixeira")
+                    {
+                        Destroy(currentHeldGameObject);
+                    }
+                }
+                if (willReturn)
+                {
+                    currentHeldGameObject.transform.localPosition = heldGameObjectOriginalPosition;
+                }
+
+                if (currentHeldGameObject.tag == "Ingrediente")
+                    currentHeldGameObject.GetComponent<Ingredient>().isBeingDragged = false;
+                else if (currentHeldGameObject.tag == "Dish")
+                    currentHeldGameObject.GetComponent<Dish>().isBeingDragged = false;
+
+                currentHeldGameObject.GetComponent<Collider2D>().enabled = true;
+                currentHeldGameObject = null;
+            }
+        }
+    }
+    private GameObject GetObjectUnderMouse()
+    {
+        Vector2 mousePos2D = 
+            Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+        RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector3.zero);
+        if (hit)
+        {
+            return hit.collider.gameObject;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    private void ExecuteStationAction()
+    {
+        WorkingStation ws = currentHeldGameObject.transform.parent.GetComponent<WorkingStation>();
+        if(ws != null)
+        {
+            if (ws.MakeNewIngredient())
+            {
+                return;
+            }
+        }
+
     }
 }
