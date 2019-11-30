@@ -7,7 +7,7 @@ public class OrderManager : MonoBehaviour
     [SerializeField] private GameObject dishManager;
     [SerializeField] private GameManager gm;
     [SerializeField] private ScoreManager sm;
-    private List<GameObject> currentOrders = new List<GameObject>();
+    [HideInInspector]public List<GameObject> currentOrders = new List<GameObject>();
 
     [SerializeField] private float timeBetweenOrders;
     [SerializeField] private GameObject orderSheet;
@@ -53,9 +53,12 @@ public class OrderManager : MonoBehaviour
 
     public void FailOrder(GameObject failedOrder)
     {
-        gm.IncreaseErrorCount(1);
-        currentOrders.Remove(failedOrder);
-        Destroy(failedOrder);
+        if(currentOrders.Count > 0)
+        {
+            gm.IncreaseErrorCount(1);
+            currentOrders.Remove(failedOrder);
+            Destroy(failedOrder);
+        }
     }
 
     public void CompleteOrder(GameObject completedOrder)
@@ -64,6 +67,4 @@ public class OrderManager : MonoBehaviour
         currentOrders.Remove(completedOrder);
         Destroy(completedOrder);
     }
-
-    //public bool 
 }

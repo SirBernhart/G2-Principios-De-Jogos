@@ -47,6 +47,11 @@ public class Plate : MonoBehaviour
             orderManagerRef.CompleteOrder(completedOrder);
             return true;
         }
+        else
+        {
+            orderManagerRef.FailOrder(orderManagerRef.currentOrders[0]);
+            ClearDishSpots();
+        }
         return false;
     }
 
