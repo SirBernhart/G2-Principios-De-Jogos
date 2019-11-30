@@ -33,7 +33,6 @@ public class DragAndDrop : MonoBehaviour
 
             if (currentHeldGameObject != null)
             {
-                Debug.Log("On click: " + currentHeldGameObject.name);
                 heldGameObjectOriginalPosition = currentHeldGameObject.transform.localPosition;
 
                 if (currentHeldGameObject.tag == "Ingrediente" || currentHeldGameObject.tag == "Dish")
@@ -80,7 +79,6 @@ public class DragAndDrop : MonoBehaviour
         {
             if (currentHeldGameObject != null)
             {
-                Debug.Log("On mouse up: " + currentHeldGameObject.name);
                 bool canContinue = false;
                 if(currentHeldGameObject.tag == "Ingrediente" && currentHeldGameObject.GetComponent<Ingredient>().isBeingDragged)
                 {
