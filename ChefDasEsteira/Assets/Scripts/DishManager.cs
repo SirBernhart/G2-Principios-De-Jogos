@@ -19,7 +19,6 @@ public class DishManager : MonoBehaviour
                 ingredient.transform.SetParent(ingredientSlots[i], false);
                 ingredient.transform.localPosition = Vector2.zero;
 
-                //prepareDishButton.SetActive(true);
                 return true;
             }
         }
@@ -54,7 +53,6 @@ public class DishManager : MonoBehaviour
                     continue;
                 }
 
-                //prepareDishButton.SetActive(false);
                 Destroy(ingredientSlots[i].GetChild(0).gameObject);
             }
             return;

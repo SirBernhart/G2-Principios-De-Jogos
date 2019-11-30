@@ -5,7 +5,6 @@ using UnityEngine;
 public class Chef : MonoBehaviour
 {
     private GameObject currentlyHolding;
-    //[SerializeField] private Transform holdPosition;
 
     public void HoldObject(GameObject objectToHold)
     {
@@ -15,13 +14,6 @@ public class Chef : MonoBehaviour
 
             // If it is and ingredient
             Ingredient ingScriptRef = objectToHold.GetComponent<Ingredient>();
-            if (ingScriptRef != null)
-            {
-                if (ingScriptRef.isInEsteira)
-                {
-                    ingScriptRef.LeaveCurrentSpace();
-                }
-            }
 
             //currentlyHolding.transform.SetParent(holdPosition, false);
             currentlyHolding.transform.localPosition = Vector2.zero;
