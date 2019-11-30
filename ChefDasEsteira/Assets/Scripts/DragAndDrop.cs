@@ -6,22 +6,25 @@ public class DragAndDrop : MonoBehaviour
 {
     [SerializeField] RectTransform preparationTableButton;
     private bool isCountingDoubleClick;
-    [SerializeField] private float maxDoubleClickTime;
     private GameObject currentHeldGameObject;
     private Vector2 heldGameObjectOriginalPosition;
+
+    // Double click variables
+    private bool doubleClicked;
     private float doubleClickTimer;
-    private Vector2 referenceVector2 = new Vector2();
+    [SerializeField] private float maxDoubleClickTime;
 
     void Update()
     {
+        doubleClicked = false;
         if (isCountingDoubleClick)
         {
-            doubleClickTimer += Time.deltaTime;
-            if(doubleClickTimer >= maxDoubleClickTime)
+            if (doubleClickTimer >= maxDoubleClickTime)
             {
                 isCountingDoubleClick = false;
                 doubleClickTimer = 0;
             }
+            doubleClickTimer += Time.deltaTime;
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -31,7 +34,6 @@ public class DragAndDrop : MonoBehaviour
             if (currentHeldGameObject != null)
             {
                 heldGameObjectOriginalPosition = currentHeldGameObject.transform.localPosition;
-                Chef chefRef = gameObject.GetComponent<Chef>();
 
                 if (currentHeldGameObject.tag == "Ingrediente" || currentHeldGameObject.tag == "Dish")
                 {
@@ -41,8 +43,9 @@ public class DragAndDrop : MonoBehaviour
                     }
                     else
                     {
-                        isCountingDoubleClick = false;
                         ExecuteStationAction();
+                        isCountingDoubleClick = false;
+                        doubleClicked = true;
                     }
                 }
                 else
@@ -72,14 +75,14 @@ public class DragAndDrop : MonoBehaviour
                     Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
             }
         }
-        if (Input.GetMouseButtonUp(0))
+        if (!doubleClicked && Input.GetMouseButtonUp(0))
         {
             if (currentHeldGameObject != null && currentHeldGameObject.GetComponent<Ingredient>().isBeingDragged)
             {
                 GameObject cliquedGameObject = GetObjectUnderMouse();
 
                 bool willReturn = true;
-                if(cliquedGameObject != null)
+                if (!isCountingDoubleClick && cliquedGameObject != null)
                 {
                     if (cliquedGameObject.GetComponent<WorkingStation>() != null)
                     {
@@ -88,7 +91,7 @@ public class DragAndDrop : MonoBehaviour
                             willReturn = false;
                         }
                     }
-                    else if(cliquedGameObject.GetComponent<DishManager>() != null)
+                    else if (cliquedGameObject.GetComponent<DishManager>() != null)
                     {
                         if (cliquedGameObject.GetComponent<DishManager>().TryAddIngredientToTable(currentHeldGameObject))
                         {
@@ -113,9 +116,13 @@ public class DragAndDrop : MonoBehaviour
                 }
 
                 if (currentHeldGameObject.tag == "Ingrediente")
+                {
                     currentHeldGameObject.GetComponent<Ingredient>().isBeingDragged = false;
+                }
                 else if (currentHeldGameObject.tag == "Dish")
+                {
                     currentHeldGameObject.GetComponent<Dish>().isBeingDragged = false;
+                }
 
                 currentHeldGameObject.GetComponent<Collider2D>().enabled = true;
                 currentHeldGameObject = null;
@@ -143,6 +150,14 @@ public class DragAndDrop : MonoBehaviour
         if(ws != null)
         {
             if (ws.MakeNewIngredient())
+            {
+                return;
+            }
+        }
+        DishManager dm = currentHeldGameObject.transform.parent.parent.parent.GetComponent<DishManager>();
+        if(dm != null)
+        {
+            if (dm.TryPrepareDish())
             {
                 return;
             }
