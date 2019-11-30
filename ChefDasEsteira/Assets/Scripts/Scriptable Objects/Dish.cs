@@ -6,6 +6,7 @@ public class Dish : MonoBehaviour
 {
     [SerializeField] private List<GameObject> requiredIngredients;
     public int pointsReward;
+    public bool isBeingDragged;
 
     public bool CheckIfIngredientMatchRecipe(List<GameObject> ingredients)
     {
