@@ -124,7 +124,8 @@ public class DragAndDrop : MonoBehaviour
                     }
                     if (willReturn)
                     {
-                        currentHeldGameObject.transform.localPosition = heldGameObjectOriginalPosition;
+                        currentHeldGameObject.transform.localPosition = 
+                            new Vector3(heldGameObjectOriginalPosition.x, heldGameObjectOriginalPosition.y, -1);
                     }
 
                     if (currentHeldGameObject.tag == "Ingrediente")
