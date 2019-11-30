@@ -31,21 +31,23 @@ public class Plate : MonoBehaviour
             if(dishSpots[i].childCount == 0)
             {
                 dish.transform.SetParent(dishSpots[i], false);
-                dish.transform.localPosition = Vector2.zero;
+                dish.transform.localPosition = new Vector3(0, 0, -1);
             }
         }
 
         return true;
     }
 
-    public void DeliverPlate()
+    public bool DeliverPlate()
     {
         GameObject completedOrder = orderManagerRef.CheckIfCanCompleteOrder(dishesInPlate);
         if(completedOrder != null)
         {
             ClearDishSpots();
             orderManagerRef.CompleteOrder(completedOrder);
+            return true;
         }
+        return false;
     }
 
     public void ClearDishSpots()

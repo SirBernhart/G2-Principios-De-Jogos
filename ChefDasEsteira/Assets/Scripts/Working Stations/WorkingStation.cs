@@ -13,7 +13,7 @@ public class WorkingStation : MonoBehaviour
         if (acceptableIngredients.Count == 0)
         {
             ingredient.transform.SetParent(transform, false);
-            ingredient.transform.localPosition = Vector3.zero;
+            ingredient.transform.localPosition = new Vector3(0, 0, -1);
             return true;
         }
 
@@ -22,7 +22,7 @@ public class WorkingStation : MonoBehaviour
             if(acceptableIngredients[i].name+"(Clone)" == ingredient.name)
             {
                 ingredient.transform.SetParent(transform, false);
-                ingredient.transform.localPosition = Vector3.zero;
+                ingredient.transform.localPosition = new Vector3(0, 0, -1);
                 return true;
             }
         }
@@ -37,7 +37,7 @@ public class WorkingStation : MonoBehaviour
             if(possibleNewIngredients[i].GetComponent<Ingredient>().requiredIngredients[0].name + "(Clone)" == transform.GetChild(0).name)
             {
                 GameObject newIngredient = Instantiate(possibleNewIngredients[i], transform);
-                newIngredient.transform.localPosition = Vector2.zero;
+                newIngredient.transform.localPosition = new Vector3(0, 0, -1);
                 Destroy(transform.GetChild(0).gameObject);
                 return true;
             }
