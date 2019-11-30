@@ -7,6 +7,7 @@ public class Order : MonoBehaviour
 {
     private List<GameObject> dishesOrdered = new List<GameObject>();
     [SerializeField] private GameObject orderTimerRef;
+    [SerializeField] private List<Sprite> sheetSprites;
     private Image orderTimer;
     private float waitTimer;
     public float maxWaitTime;
@@ -30,12 +31,17 @@ public class Order : MonoBehaviour
 
     public void MakeAnOrder(List<GameObject> possibleDishes)
     {
-        int numberOfDishes = 1;//Random.Range(1, 5);
+        int numberOfDishes = 1;
 
         for(int i = 0 ; i < numberOfDishes ; ++i)
         {
             dishesOrdered.Add(possibleDishes[Random.Range(0, possibleDishes.Count)]);
             totalScore += dishesOrdered[dishesOrdered.Count - 1].GetComponent<Dish>().pointsReward;
+        }
+        for(int i = 0 ; i < sheetSprites.Count ; ++i)
+        {
+            if (sheetSprites[i].name == dishesOrdered[0].name)
+                gameObject.GetComponent<Image>().sprite = sheetSprites[i];
         }
     }
 
