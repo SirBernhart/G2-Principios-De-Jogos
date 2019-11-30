@@ -31,6 +31,7 @@ public class Plate : MonoBehaviour
             if(dishSpots[i].childCount == 0)
             {
                 dish.transform.SetParent(dishSpots[i], false);
+                dish.transform.localPosition = Vector2.zero;
             }
         }
 

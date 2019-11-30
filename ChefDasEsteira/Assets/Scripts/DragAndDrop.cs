@@ -77,55 +77,68 @@ public class DragAndDrop : MonoBehaviour
         }
         if (!doubleClicked && Input.GetMouseButtonUp(0))
         {
-            if (currentHeldGameObject != null && currentHeldGameObject.GetComponent<Ingredient>().isBeingDragged)
+            if (currentHeldGameObject != null)
             {
-                GameObject cliquedGameObject = GetObjectUnderMouse();
-
-                bool willReturn = true;
-                if (!isCountingDoubleClick && cliquedGameObject != null)
+                bool canContinue = false;
+                if(currentHeldGameObject.tag == "Ingrediente" && currentHeldGameObject.GetComponent<Ingredient>().isBeingDragged)
                 {
-                    if (cliquedGameObject.GetComponent<WorkingStation>() != null)
-                    {
-                        if (cliquedGameObject.GetComponent<WorkingStation>().TryPlaceIngredient(currentHeldGameObject))
-                        {
-                            willReturn = false;
-                        }
-                    }
-                    else if (cliquedGameObject.GetComponent<DishManager>() != null)
-                    {
-                        if (cliquedGameObject.GetComponent<DishManager>().TryAddIngredientToTable(currentHeldGameObject))
-                        {
-                            willReturn = false;
-                        }
-                    }
-                    else if (cliquedGameObject.GetComponent<Plate>() != null)
-                    {
-                        if (cliquedGameObject.GetComponent<Plate>().TryToAddDish(currentHeldGameObject))
-                        {
-                            willReturn = false;
-                        }
-                    }
-                    else if (cliquedGameObject.tag == "Lixeira")
-                    {
-                        Destroy(currentHeldGameObject);
-                    }
+                    canContinue = true;
                 }
-                if (willReturn)
+                else if(currentHeldGameObject.tag == "Dish" && currentHeldGameObject.GetComponent<Dish>().isBeingDragged)
                 {
-                    currentHeldGameObject.transform.localPosition = heldGameObjectOriginalPosition;
+                    canContinue = true;
                 }
 
-                if (currentHeldGameObject.tag == "Ingrediente")
+                if (canContinue)
                 {
-                    currentHeldGameObject.GetComponent<Ingredient>().isBeingDragged = false;
-                }
-                else if (currentHeldGameObject.tag == "Dish")
-                {
-                    currentHeldGameObject.GetComponent<Dish>().isBeingDragged = false;
-                }
+                    GameObject cliquedGameObject = GetObjectUnderMouse();
+                    bool willReturn = true;
 
-                currentHeldGameObject.GetComponent<Collider2D>().enabled = true;
-                currentHeldGameObject = null;
+                    if (!isCountingDoubleClick && cliquedGameObject != null)
+                    {
+                        if (cliquedGameObject.GetComponent<WorkingStation>() != null)
+                        {
+                            if (cliquedGameObject.GetComponent<WorkingStation>().TryPlaceIngredient(currentHeldGameObject))
+                            {
+                                willReturn = false;
+                            }
+                        }
+                        else if (cliquedGameObject.GetComponent<DishManager>() != null)
+                        {
+                            if (cliquedGameObject.GetComponent<DishManager>().TryAddIngredientToTable(currentHeldGameObject))
+                            {
+                                willReturn = false;
+                            }
+                        }
+                        else if (cliquedGameObject.GetComponent<Plate>() != null)
+                        {
+                            if (cliquedGameObject.GetComponent<Plate>().TryToAddDish(currentHeldGameObject))
+                            {
+                                willReturn = false;
+                            }
+                        }
+                        else if (cliquedGameObject.tag == "Lixeira")
+                        {
+                            Destroy(currentHeldGameObject);
+                        }
+                    }
+                    if (willReturn)
+                    {
+                        currentHeldGameObject.transform.localPosition = heldGameObjectOriginalPosition;
+                    }
+
+                    if (currentHeldGameObject.tag == "Ingrediente")
+                    {
+                        currentHeldGameObject.GetComponent<Ingredient>().isBeingDragged = false;
+                    }
+                    else if (currentHeldGameObject.tag == "Dish")
+                    {
+                        currentHeldGameObject.GetComponent<Dish>().isBeingDragged = false;
+                    }
+
+                    currentHeldGameObject.GetComponent<Collider2D>().enabled = true;
+                    currentHeldGameObject = null;
+                }
             }
         }
     }
