@@ -12,7 +12,7 @@ public class Plate : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0 ; i < 4 ; ++i)
+        for(int i = 0 ; i < 1 ; ++i)
         {
             dishSpots.Add(dishSpotsParent.GetChild(i));
         }
