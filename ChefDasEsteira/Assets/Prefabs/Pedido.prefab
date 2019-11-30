@@ -65,7 +65,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 57b785196684d594eb32b57ca3ecedc2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b8284ed1a244e04f9692de636787c35, type: 3}
   m_Type: 3
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -165,4 +165,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderTimerRef: {fileID: 2855383212281189100}
+  sheetSprites:
+  - {fileID: 21300000, guid: c61e8c7b5e31bc441b27742af2da0392, type: 3}
+  - {fileID: 21300000, guid: d70639d0f37de924da95f57afaa219fe, type: 3}
+  - {fileID: 21300000, guid: 57b785196684d594eb32b57ca3ecedc2, type: 3}
   maxWaitTime: 20
+  totalScore: 0
