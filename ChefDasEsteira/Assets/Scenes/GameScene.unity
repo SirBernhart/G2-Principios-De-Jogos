@@ -820,9 +820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b11e06008e158240afeef60d371d14c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceptableIngredients:
-  - {fileID: 923827081539361104, guid: 837fdcb9dbb209f43bfb9140395b6986, type: 3}
-  - {fileID: 4542539547214332234, guid: 8e5f3053afc541943995c86221a95005, type: 3}
+  acceptableIngredients: []
   possibleNewIngredients:
   - {fileID: 4542539547214332234, guid: 8e5f3053afc541943995c86221a95005, type: 3}
 --- !u!61 &494285422
@@ -838,7 +836,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0020446777, y: -0.24897766}
+  m_Offset: {x: 0.032349944, y: -0.16306448}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -849,7 +847,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 161.35452, y: 65.44391}
+  m_Size: {x: 5.486266, y: 2.4439626}
   m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
@@ -1040,7 +1038,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647118396}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 0, z: 0}
+  m_LocalPosition: {x: -0.4, y: 0, z: -1}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 1624582241}
@@ -1369,7 +1367,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 174.61081, y: 109.84871}
+  m_Size: {x: 5.1770782, y: 3.256931}
   m_EdgeRadius: 0
 --- !u!1 &889490355
 GameObject:
@@ -1858,7 +1856,7 @@ GameObject:
   - component: {fileID: 1624935520}
   - component: {fileID: 1624935522}
   m_Layer: 0
-  m_Name: Balcao
+  m_Name: Balcao de preparo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2197,7 +2195,7 @@ MonoBehaviour:
   - {fileID: 5291852523289543905, guid: d2fec3f8d663e8744bd3c31dc5bb1e34, type: 3}
   timeBetweenIngredients: 3
   moveSpeed: 2
-  spawnpoint: {fileID: 0}
+  spawnpoint: {fileID: 5565658}
 --- !u!1 &1885005609
 GameObject:
   m_ObjectHideFlags: 0
@@ -2521,7 +2519,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 88.831085, y: 98.76576}
+  m_Size: {x: 2.5275166, y: 2.8101888}
   m_EdgeRadius: 0
 --- !u!114 &1946340275
 MonoBehaviour:
