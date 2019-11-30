@@ -5,7 +5,6 @@ using UnityEngine;
 public class EsteiraManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> possibleIngredients;
-    [HideInInspector] public List<GameObject> spawnedIngredients = new List<GameObject>();
     public float timeBetweenIngredients;
     [SerializeField] private float moveSpeed;
     private Vector3 directionalSpeed;
@@ -26,12 +25,12 @@ public class EsteiraManager : MonoBehaviour
             timerNextIngredient = 0;
 
             GameObject nextIngredient = possibleIngredients[Random.Range(0, possibleIngredients.Count)];
-            spawnedIngredients.Add(Instantiate(nextIngredient, spawnpoint));
+            Instantiate(nextIngredient, spawnpoint);
         }
 
-        for(int i = 0 ; i < spawnedIngredients.Count ; ++i)
+        for(int i = 0 ; i < spawnpoint.childCount ; ++i)
         {
-            spawnedIngredients[i].GetComponent<Rigidbody2D>().MovePosition(spawnedIngredients[i].transform.position + directionalSpeed);
+            spawnpoint.GetChild(i).GetComponent<Rigidbody2D>().MovePosition(spawnpoint.GetChild(i).transform.position + directionalSpeed * Time.deltaTime);
         }
     }
 }
