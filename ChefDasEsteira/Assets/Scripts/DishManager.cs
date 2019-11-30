@@ -5,10 +5,18 @@ using UnityEngine;
 public class DishManager : MonoBehaviour
 {
     public List<GameObject> possibleDishes;
-    public List<Transform> ingredientSlots;
+    [SerializeField] private Transform slotsParent;
+    private List<Transform> ingredientSlots;
     public Transform dishSlot;
 
-    [SerializeField] private GameObject prepareDishButton;
+    private void Start()
+    {
+        ingredientSlots = new List<Transform>();
+        for(int i = 0 ; i < slotsParent.childCount ; ++i)
+        {
+            ingredientSlots.Add(slotsParent.GetChild(i));
+        }
+    }
 
     public bool TryAddIngredientToTable(GameObject ingredient)
     {
