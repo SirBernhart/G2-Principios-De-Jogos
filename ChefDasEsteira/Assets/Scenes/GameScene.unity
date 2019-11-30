@@ -609,6 +609,8 @@ GameObject:
   - component: {fileID: 455591923}
   - component: {fileID: 455591925}
   - component: {fileID: 455591924}
+  - component: {fileID: 455591926}
+  - component: {fileID: 455591927}
   m_Layer: 0
   m_Name: Tatami
   m_TagString: Untagged
@@ -687,6 +689,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455591922}
   m_CullTransparentMesh: 0
+--- !u!114 &455591926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455591922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11e06008e158240afeef60d371d14c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceptableIngredients: []
+  possibleNewIngredients:
+  - {fileID: 8601338760711130175, guid: 171bea588ab7dbc49a1c4fb0b5c15b9f, type: 3}
+--- !u!61 &455591927
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455591922}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.54, y: 2.31}
+    newSize: {x: 3.54, y: 2.31}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.54, y: 2.31}
+  m_EdgeRadius: 0
 --- !u!1 &482948643
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,6 +866,7 @@ MonoBehaviour:
   acceptableIngredients: []
   possibleNewIngredients:
   - {fileID: 4542539547214332234, guid: 8e5f3053afc541943995c86221a95005, type: 3}
+  - {fileID: 8601338760711130175, guid: 2955a7e6b1df0fe40b54ab35ca2a6b08, type: 3}
 --- !u!61 &494285422
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1336,6 +1380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleDishes:
   - {fileID: 5918845657400750899, guid: 4645a915d65de3a4faeb403487a6801c, type: 3}
+  - {fileID: 2091954474641020517, guid: f8eeeed72f1436941934e3405ccd4db5, type: 3}
   slotsParent: {fileID: 1019913307}
   dishSlot: {fileID: 55778498}
 --- !u!61 &804465637
@@ -2188,6 +2233,7 @@ MonoBehaviour:
   possibleIngredients:
   - {fileID: 923827081539361104, guid: 837fdcb9dbb209f43bfb9140395b6986, type: 3}
   - {fileID: 5291852523289543905, guid: d2fec3f8d663e8744bd3c31dc5bb1e34, type: 3}
+  - {fileID: 539804268343137382, guid: 83097199ce24d944cb0d6ee5deb79d17, type: 3}
   timeBetweenIngredients: 3
   moveSpeed: 2
   spawnpoint: {fileID: 5565658}
@@ -2409,8 +2455,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1946340271}
   - component: {fileID: 1946340273}
-  - component: {fileID: 1946340274}
   - component: {fileID: 1946340275}
+  - component: {fileID: 1946340274}
   - component: {fileID: 1946340272}
   m_Layer: 0
   m_Name: Maquina arroz
