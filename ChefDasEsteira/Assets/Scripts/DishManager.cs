@@ -30,13 +30,12 @@ public class DishManager : MonoBehaviour
                 return true;
             }
         }
-
         return false;
     }
 
-    public void PrepareDish()
+    public bool TryPrepareDish()
     {
-        List<GameObject> ingredients = new List<GameObject>();
+        List<GameObject> ingredientsToPrepare = new List<GameObject>();
         for(int i = 0 ; i < ingredientSlots.Count ; ++i)
         {
             if (ingredientSlots[i].childCount == 0)
@@ -44,12 +43,11 @@ public class DishManager : MonoBehaviour
                 continue;
             }
 
-            ingredients.Add(ingredientSlots[i].GetChild(0).gameObject);
-            Debug.Log(ingredients[i].name);
+            ingredientsToPrepare.Add(ingredientSlots[i].GetChild(0).gameObject);
         }
 
-        GameObject newDish = GetDishMadeByTheseIngredients(ingredients);
-        ingredients.Clear();
+        GameObject newDish = GetDishMadeByTheseIngredients(ingredientsToPrepare);
+        ingredientsToPrepare.Clear();
         // If a dish could be made, instantiates it and clears the ingredients
         if(newDish != null)
         {
@@ -63,9 +61,10 @@ public class DishManager : MonoBehaviour
 
                 Destroy(ingredientSlots[i].GetChild(0).gameObject);
             }
-            return;
+            return true;
         }
         Debug.Log("No dish matches this recipe");
+        return false;
     }
 
     public GameObject GetDishMadeByTheseIngredients(List<GameObject> ingredients)
