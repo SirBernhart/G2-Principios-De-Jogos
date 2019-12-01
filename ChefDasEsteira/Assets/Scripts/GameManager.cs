@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private int errorCount;
     private bool isFinishing = false;
     [SerializeField] private GameObject endGameFadeOut;
+    [SerializeField] private AudioSource music;
 
 
     public void IncreaseErrorCount(int errorIncrement)
@@ -30,7 +31,18 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         endGameFadeOut.SetActive(true);
-        Invoke("LoadGameOver", 3f);
+        StartCoroutine(FadeMusic());
+        Invoke("LoadGameOver", 3.5f);
+    }
+
+    IEnumerator FadeMusic()
+    {
+        for(float i = 3 ; i >= 0 ; i -= Time.deltaTime)
+        {
+            music.volume = i/3;
+            Debug.Log(music.volume);
+            yield return null;
+        }
     }
 
     public void LoadGameOver()
