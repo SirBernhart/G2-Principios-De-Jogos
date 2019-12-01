@@ -67,6 +67,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6150876846508227892, guid: e8cd1c45978e8ba448ac359171fb7648,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.16589399
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150876846508227892, guid: e8cd1c45978e8ba448ac359171fb7648,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.16589399
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150876846508227892, guid: e8cd1c45978e8ba448ac359171fb7648,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.16589399
+      objectReference: {fileID: 0}
     - target: {fileID: 5691501926607663532, guid: e8cd1c45978e8ba448ac359171fb7648,
         type: 3}
       propertyPath: requiredIngredients.Array.size
@@ -149,12 +164,12 @@ PrefabInstance:
     - target: {fileID: 1691223734650978477, guid: e8cd1c45978e8ba448ac359171fb7648,
         type: 3}
       propertyPath: m_Size.x
-      value: 1.750387
+      value: 10.288442
       objectReference: {fileID: 0}
     - target: {fileID: 1691223734650978477, guid: e8cd1c45978e8ba448ac359171fb7648,
         type: 3}
       propertyPath: m_Size.y
-      value: 1.7169673
+      value: 10.092008
       objectReference: {fileID: 0}
     - target: {fileID: 1691223734650978477, guid: e8cd1c45978e8ba448ac359171fb7648,
         type: 3}

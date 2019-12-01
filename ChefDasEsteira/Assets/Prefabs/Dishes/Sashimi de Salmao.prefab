@@ -83,6 +83,31 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3204759403179138024, guid: 024b738223e62a649a281ddf7f727f4a,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 8.229893
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204759403179138024, guid: 024b738223e62a649a281ddf7f727f4a,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 8.688559
+      objectReference: {fileID: 0}
+    - target: {fileID: 6698160229394052268, guid: 024b738223e62a649a281ddf7f727f4a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.229
+      objectReference: {fileID: 0}
+    - target: {fileID: 6698160229394052268, guid: 024b738223e62a649a281ddf7f727f4a,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.229
+      objectReference: {fileID: 0}
+    - target: {fileID: 6698160229394052268, guid: 024b738223e62a649a281ddf7f727f4a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.229
+      objectReference: {fileID: 0}
     - target: {fileID: 4910306782978443344, guid: 024b738223e62a649a281ddf7f727f4a,
         type: 3}
       propertyPath: requiredIngredients.Array.size
