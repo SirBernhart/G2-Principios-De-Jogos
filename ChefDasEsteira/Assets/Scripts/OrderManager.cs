@@ -12,6 +12,8 @@ public class OrderManager : MonoBehaviour
     [SerializeField] private float timeBetweenOrders;
     [SerializeField] private GameObject orderSheet;
     [SerializeField] private Transform orderSheetParent;
+    [SerializeField] private Transform errorCounter;
+    [SerializeField] private GameObject redX;
 
     // Sounds
     [SerializeField] private AudioSource newOrder;
@@ -62,6 +64,7 @@ public class OrderManager : MonoBehaviour
         if(currentOrders.Count > 0)
         {
             gm.IncreaseErrorCount(1);
+            Instantiate(redX, errorCounter);
             currentOrders.Remove(failedOrder);
             Destroy(failedOrder);
             orderFailed.Play();
