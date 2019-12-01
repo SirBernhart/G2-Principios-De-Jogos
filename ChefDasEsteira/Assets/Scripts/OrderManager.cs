@@ -13,6 +13,11 @@ public class OrderManager : MonoBehaviour
     [SerializeField] private GameObject orderSheet;
     [SerializeField] private Transform orderSheetParent;
 
+    // Sounds
+    [SerializeField] private AudioSource newOrder;
+    [SerializeField] private AudioSource orderComplete;
+    [SerializeField] private AudioSource orderFailed;
+
     private void Start()
     {
         timerForNextOrder = timeBetweenOrders - 5;
@@ -36,6 +41,7 @@ public class OrderManager : MonoBehaviour
     {
         currentOrders.Add(Instantiate(orderSheet, orderSheetParent));
         currentOrders[currentOrders.Count - 1].GetComponent<Order>().MakeAnOrder(dishManager.GetComponent<DishManager>().possibleDishes);
+        newOrder.Play();
     }
 
     public GameObject CheckIfCanCompleteOrder(List<GameObject> dishesInPlate)
@@ -58,6 +64,7 @@ public class OrderManager : MonoBehaviour
             gm.IncreaseErrorCount(1);
             currentOrders.Remove(failedOrder);
             Destroy(failedOrder);
+            orderFailed.Play();
         }
     }
 
@@ -66,5 +73,6 @@ public class OrderManager : MonoBehaviour
         sm.IncreaseScore(completedOrder.GetComponent<Order>().totalScore);
         currentOrders.Remove(completedOrder);
         Destroy(completedOrder);
+        orderComplete.Play();
     }
 }

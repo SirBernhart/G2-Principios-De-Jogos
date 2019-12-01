@@ -8,6 +8,9 @@ public class WorkingStation : MonoBehaviour
     [SerializeField] private List<GameObject> acceptableIngredients;
     [SerializeField] private List<GameObject> possibleNewIngredients;
 
+    //Sounds
+    [SerializeField] private AudioSource soundToPlay;
+
     public bool TryPlaceIngredient(GameObject ingredient)
     {
         if (acceptableIngredients.Count == 0)
@@ -66,7 +69,8 @@ public class WorkingStation : MonoBehaviour
                 ClearIngredientsInStation();
                 GameObject newIngredient = Instantiate(possibleNewIngredients[i], transform);
                 newIngredient.transform.localPosition = new Vector3(0, 0, -1);
-                
+
+                soundToPlay.Play();
                 return true;
             }
         }

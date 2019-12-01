@@ -9,6 +9,9 @@ public class DragAndDrop : MonoBehaviour
     private GameObject currentHeldGameObject;
     private Vector2 heldGameObjectOriginalPosition;
 
+    // Souns
+    [SerializeField] private AudioSource lixo;
+
     // Double click variables
     private bool doubleClicked;
     private float doubleClickTimer;
@@ -119,6 +122,7 @@ public class DragAndDrop : MonoBehaviour
                         }
                         else if (cliquedGameObject.tag == "Lixeira")
                         {
+                            lixo.Play();
                             Destroy(currentHeldGameObject);
                         }
                     }

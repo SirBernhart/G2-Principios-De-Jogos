@@ -9,6 +9,9 @@ public class DishManager : MonoBehaviour
     private List<Transform> ingredientSlots;
     public Transform dishSlot;
 
+    // Sounds
+    [SerializeField] private AudioSource madeDish;
+
     private void Start()
     {
         ingredientSlots = new List<Transform>();
@@ -61,6 +64,7 @@ public class DishManager : MonoBehaviour
 
                 Destroy(ingredientSlots[i].GetChild(0).gameObject);
             }
+            madeDish.Play();
             return true;
         }
         Debug.Log("No dish matches this recipe");
