@@ -57,6 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBeingDragged: 0
   requiredIngredients: []
+  pointsReward: 0
 --- !u!61 &1691223734650978477
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -81,7 +82,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.438043, y: 2.3914943}
+  m_Size: {x: 2.8823733, y: 2.1298022}
   m_EdgeRadius: 0
 --- !u!50 &6427008756465008255
 Rigidbody2D:

@@ -12,6 +12,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arroz cozido
       objectReference: {fileID: 0}
+    - target: {fileID: 6150876846508227892, guid: e8cd1c45978e8ba448ac359171fb7648,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150876846508227892, guid: e8cd1c45978e8ba448ac359171fb7648,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6150876846508227892, guid: e8cd1c45978e8ba448ac359171fb7648,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5691501926607663532, guid: e8cd1c45978e8ba448ac359171fb7648,
         type: 3}
       propertyPath: requiredIngredients.Array.size
@@ -78,6 +93,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691223734650978477, guid: e8cd1c45978e8ba448ac359171fb7648,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3.20335
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691223734650978477, guid: e8cd1c45978e8ba448ac359171fb7648,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.7511538
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691223734650978477, guid: e8cd1c45978e8ba448ac359171fb7648,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.012555063
       objectReference: {fileID: 0}
     - target: {fileID: 4916344585280072130, guid: e8cd1c45978e8ba448ac359171fb7648,
         type: 3}
