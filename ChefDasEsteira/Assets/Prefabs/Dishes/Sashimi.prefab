@@ -109,6 +109,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5110404724253766457, guid: 837fdcb9dbb209f43bfb9140395b6986,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7207351698912905545, guid: 837fdcb9dbb209f43bfb9140395b6986,
         type: 3}
       propertyPath: m_LocalPosition.x
