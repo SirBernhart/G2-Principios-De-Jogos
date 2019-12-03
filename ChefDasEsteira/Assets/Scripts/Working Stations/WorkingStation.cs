@@ -7,6 +7,7 @@ public class WorkingStation : MonoBehaviour
 {
     [SerializeField] private List<GameObject> acceptableIngredients;
     [SerializeField] private List<GameObject> possibleNewIngredients;
+    [SerializeField] private KittenAnimationController animation;
 
     //Sounds
     [SerializeField] private AudioSource soundToPlay;
@@ -72,6 +73,7 @@ public class WorkingStation : MonoBehaviour
                 GameObject newIngredient = Instantiate(possibleNewIngredients[i], transform);
                 newIngredient.transform.localPosition = new Vector3(0, 0, -1);
 
+                PlayCorrectAnimation();
                 soundToPlay.Play();
                 return true;
             }
@@ -90,6 +92,27 @@ public class WorkingStation : MonoBehaviour
         for(int i = 0 ; i < transform.childCount ; ++i)
         {
             Destroy(transform.GetChild(i).gameObject);
+        }
+    }
+
+    public void PlayCorrectAnimation()
+    {
+        if(gameObject.name != "Maquina arroz")
+        {
+            animation.StopAllAnimations();
+
+            if (gameObject.name == "Tabua de cortar")
+            {
+                animation.AnimateCutting();
+            }
+            else if(gameObject.name == "Mesa de preparo")
+            {
+                animation.AnimatePreparing();
+            }
+            else if(gameObject.name == "Tatami")
+            {
+                animation.AnimateRolling();
+            }
         }
     }
 

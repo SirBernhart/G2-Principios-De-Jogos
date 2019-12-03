@@ -939,6 +939,7 @@ MonoBehaviour:
   acceptableIngredients: []
   possibleNewIngredients:
   - {fileID: 8601338760711130175, guid: 171bea588ab7dbc49a1c4fb0b5c15b9f, type: 3}
+  animation: {fileID: 1885005613}
   soundToPlay: {fileID: 455591924}
 --- !u!61 &455591927
 BoxCollider2D:
@@ -1104,6 +1105,7 @@ MonoBehaviour:
   possibleNewIngredients:
   - {fileID: 4542539547214332234, guid: 8e5f3053afc541943995c86221a95005, type: 3}
   - {fileID: 8601338760711130175, guid: 2955a7e6b1df0fe40b54ab35ca2a6b08, type: 3}
+  animation: {fileID: 1885005613}
   soundToPlay: {fileID: 494285423}
 --- !u!61 &494285422
 BoxCollider2D:
@@ -1718,6 +1720,7 @@ MonoBehaviour:
   possibleNewIngredients:
   - {fileID: 6482596624450954080, guid: fc9abbe2316221b4b989eb95c2980ed2, type: 3}
   - {fileID: 3375389396465132292, guid: 60e7b2ed4c7836046ab4e387507c97aa, type: 3}
+  animation: {fileID: 1885005613}
   soundToPlay: {fileID: 804465638}
 --- !u!61 &804465637
 BoxCollider2D:
@@ -2722,8 +2725,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1885005611}
-  - component: {fileID: 1885005613}
   - component: {fileID: 1885005612}
+  - component: {fileID: 1885005613}
   - component: {fileID: 1885005614}
   - component: {fileID: 1885005610}
   - component: {fileID: 1885005616}
@@ -2773,7 +2776,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: f47b0906f6e1d314b951a9f3926d76cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2793,7 +2796,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885005609}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.08, y: -0.79, z: 0}
+  m_LocalPosition: {x: -2.13, y: -0.763, z: 0}
   m_LocalScale: {x: 0.64, y: 0.64, z: 0.64}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2822,9 +2825,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1885005609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3d4e29c6f25cc44d8675ddb34cb1493, type: 3}
+  m_Script: {fileID: 11500000, guid: f5273a48b0e658a438ef109617756522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1885005617}
+  idlePosition: {x: -1.08, y: -0.763, z: -5}
+  cuttingPosition: {x: -5.62, y: -1.55, z: -5}
+  rollingPosition: {x: 1.42, y: -1.86, z: -5}
+  preparingPosition: {x: -2.13, y: -0.763, z: -5}
 --- !u!222 &1885005614
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3269,6 +3277,7 @@ MonoBehaviour:
   - {fileID: 5291852523289543905, guid: d2fec3f8d663e8744bd3c31dc5bb1e34, type: 3}
   possibleNewIngredients:
   - {fileID: 4362076148852890986, guid: 22737fcbed14d474289ec4215d2fe30f, type: 3}
+  animation: {fileID: 1885005613}
   soundToPlay: {fileID: 1946340276}
 --- !u!82 &1946340276
 AudioSource:
