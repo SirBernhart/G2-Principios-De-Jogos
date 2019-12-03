@@ -144,7 +144,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5565657}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.13, y: 2.1163907, z: 0}
+  m_LocalPosition: {x: -10.13, y: 2.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -247,8 +247,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2411,8 +2411,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658457348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.99, y: 0.68, z: -1}
-  m_LocalScale: {x: 0.64102656, y: 0.64102656, z: 0.64102656}
+  m_LocalPosition: {x: 2.721, y: 0.68, z: -1}
+  m_LocalScale: {x: 0.63397527, y: 0.64102656, z: 0.64102656}
   m_Children:
   - {fileID: 455591923}
   m_Father: {fileID: 1624935520}
@@ -2890,7 +2890,7 @@ MonoBehaviour:
   animator: {fileID: 1885005617}
   idlePosition: {x: -1.08, y: -0.763, z: -5}
   cuttingPosition: {x: -5.62, y: -1.55, z: -5}
-  rollingPosition: {x: 1.36, y: -1.85, z: -5}
+  rollingPosition: {x: 1.069, y: -1.85, z: -5}
   preparingPosition: {x: -2.13, y: -0.763, z: -5}
 --- !u!222 &1885005614
 CanvasRenderer:
