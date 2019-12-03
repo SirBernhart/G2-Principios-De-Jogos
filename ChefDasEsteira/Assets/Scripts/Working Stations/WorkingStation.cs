@@ -17,6 +17,7 @@ public class WorkingStation : MonoBehaviour
         {
             ingredient.transform.SetParent(transform, false);
             ingredient.transform.localPosition = new Vector3(0, 0, -1);
+            MakeNewIngredient();
             return true;
         }
 
@@ -26,6 +27,7 @@ public class WorkingStation : MonoBehaviour
             {
                 ingredient.transform.SetParent(transform, false);
                 ingredient.transform.localPosition = new Vector3(0, 0, -1);
+                MakeNewIngredient();
                 return true;
             }
         }

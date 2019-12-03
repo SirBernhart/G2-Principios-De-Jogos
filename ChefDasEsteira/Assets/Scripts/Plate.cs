@@ -34,6 +34,7 @@ public class Plate : MonoBehaviour
                 dish.transform.localPosition = new Vector3(0, 0, -1);
             }
         }
+        DeliverPlate();
 
         return true;
     }
