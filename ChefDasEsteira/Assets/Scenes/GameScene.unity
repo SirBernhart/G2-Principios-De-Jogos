@@ -1711,16 +1711,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 804465632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6433ba50a46acb145951796b54b9aff7, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b11e06008e158240afeef60d371d14c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleDishes:
-  - {fileID: 5918845657400750899, guid: 4645a915d65de3a4faeb403487a6801c, type: 3}
-  - {fileID: 2091954474641020517, guid: f8eeeed72f1436941934e3405ccd4db5, type: 3}
-  - {fileID: 651041768230881800, guid: dfbb2849bcb1dd4459ddc19a350780fe, type: 3}
-  slotsParent: {fileID: 1019913307}
-  dishSlot: {fileID: 55778498}
-  madeDish: {fileID: 804465638}
+  acceptableIngredients: []
+  possibleNewIngredients:
+  - {fileID: 6482596624450954080, guid: fc9abbe2316221b4b989eb95c2980ed2, type: 3}
+  soundToPlay: {fileID: 804465638}
 --- !u!61 &804465637
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1756,8 +1753,9 @@ AudioSource:
   m_GameObject: {fileID: 804465632}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c1670171824b20a4caa92172f737a661, type: 3}
+  OutputAudioMixerGroup: {fileID: -6089973928161631458, guid: bd463865a4556964f8bc5d0d76e4141d,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 1444a9afecebfab4994a467c20d3c412, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2004,7 +2002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7000a435bb10e54b90ff1420982d393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxErrorsAllowed: 0
+  maxErrorsAllowed: 3
   endGameFadeOut: {fileID: 441835580}
   music: {fileID: 2081348240}
 --- !u!1001 &1441230503
@@ -3598,7 +3596,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4da3434f3d38254da9ce3774a709351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dishManager: {fileID: 804465632}
+  possibleOrders:
+  - {fileID: 8601338760711130175, guid: 2955a7e6b1df0fe40b54ab35ca2a6b08, type: 3}
+  - {fileID: 6482596624450954080, guid: fc9abbe2316221b4b989eb95c2980ed2, type: 3}
+  - {fileID: 4542539547214332234, guid: 8e5f3053afc541943995c86221a95005, type: 3}
   gm: {fileID: 1285489615}
   sm: {fileID: 681414218}
   currentOrders: []
