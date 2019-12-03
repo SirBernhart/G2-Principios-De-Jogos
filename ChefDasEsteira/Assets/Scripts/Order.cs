@@ -41,7 +41,7 @@ public class Order : MonoBehaviour
         for(int i = 0 ; i < sheetSprites.Count ; ++i)
         {
             if (sheetSprites[i].name == dishesOrdered[0].name)
-                gameObject.GetComponent<Image>().sprite = sheetSprites[i];
+                transform.GetChild(0).GetComponent<Image>().sprite = sheetSprites[i];
         }
     }
 
