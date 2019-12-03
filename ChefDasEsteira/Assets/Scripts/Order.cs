@@ -36,7 +36,7 @@ public class Order : MonoBehaviour
         for(int i = 0 ; i < numberOfDishes ; ++i)
         {
             dishesOrdered.Add(possibleDishes[Random.Range(0, possibleDishes.Count)]);
-            totalScore += dishesOrdered[dishesOrdered.Count - 1].GetComponent<Dish>().pointsReward;
+            totalScore += dishesOrdered[dishesOrdered.Count - 1].GetComponent<Ingredient>().pointsReward;
         }
         for(int i = 0 ; i < sheetSprites.Count ; ++i)
         {

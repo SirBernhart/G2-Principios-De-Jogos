@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrderManager : MonoBehaviour
 {
-    [SerializeField] private GameObject dishManager;
+    [SerializeField] private List<GameObject> possibleOrders;
     [SerializeField] private GameManager gm;
     [SerializeField] private ScoreManager sm;
     [HideInInspector]public List<GameObject> currentOrders = new List<GameObject>();
@@ -42,7 +42,7 @@ public class OrderManager : MonoBehaviour
     public void GetNewOrder()
     {
         currentOrders.Add(Instantiate(orderSheet, orderSheetParent));
-        currentOrders[currentOrders.Count - 1].GetComponent<Order>().MakeAnOrder(dishManager.GetComponent<DishManager>().possibleDishes);
+        currentOrders[currentOrders.Count - 1].GetComponent<Order>().MakeAnOrder(possibleOrders);
         newOrder.Play();
     }
 

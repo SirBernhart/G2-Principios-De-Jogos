@@ -6,6 +6,7 @@ public class Ingredient : MonoBehaviour
 {
     [HideInInspector] public bool isBeingDragged;
     public List<GameObject> requiredIngredients;
+    public int pointsReward;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
