@@ -1717,6 +1717,7 @@ MonoBehaviour:
   acceptableIngredients: []
   possibleNewIngredients:
   - {fileID: 6482596624450954080, guid: fc9abbe2316221b4b989eb95c2980ed2, type: 3}
+  - {fileID: 3375389396465132292, guid: 60e7b2ed4c7836046ab4e387507c97aa, type: 3}
   soundToPlay: {fileID: 804465638}
 --- !u!61 &804465637
 BoxCollider2D:
@@ -2811,7 +2812,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preparationTableButton: {fileID: 0}
   lixo: {fileID: 1885005616}
-  maxDoubleClickTime: 0.3
 --- !u!114 &1885005613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3600,6 +3600,7 @@ MonoBehaviour:
   - {fileID: 8601338760711130175, guid: 2955a7e6b1df0fe40b54ab35ca2a6b08, type: 3}
   - {fileID: 6482596624450954080, guid: fc9abbe2316221b4b989eb95c2980ed2, type: 3}
   - {fileID: 4542539547214332234, guid: 8e5f3053afc541943995c86221a95005, type: 3}
+  - {fileID: 3375389396465132292, guid: 60e7b2ed4c7836046ab4e387507c97aa, type: 3}
   gm: {fileID: 1285489615}
   sm: {fileID: 681414218}
   currentOrders: []
