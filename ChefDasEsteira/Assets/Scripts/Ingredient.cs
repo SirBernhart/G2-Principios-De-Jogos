@@ -53,6 +53,7 @@ public class Ingredient : MonoBehaviour, IDraggableObject, IDraggableObjectProvi
         if (!releasedOnValidPosition)
         {
             transform.position = originalPos;
+            thisCollider2d.enabled = true;
         }
         
         OnDragFinished?.Invoke(releasedOnValidPosition);
@@ -60,16 +61,8 @@ public class Ingredient : MonoBehaviour, IDraggableObject, IDraggableObjectProvi
 
     public bool TryGetDraggableObject(out IDraggableObject obj, out Action<bool> onDragFinishedCallback)
     {
-        onDragFinishedCallback = ReEnableColliderIfPositionInvalid;
+        onDragFinishedCallback = null;
         obj = this;
         return true;
-    }
-
-    private void ReEnableColliderIfPositionInvalid(bool releasedOnValidPosition)
-    {
-        if (!releasedOnValidPosition)
-        {
-            thisCollider2d.enabled = true;
-        }
     }
 }

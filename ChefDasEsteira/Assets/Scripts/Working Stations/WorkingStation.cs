@@ -67,8 +67,9 @@ public class WorkingStation : MonoBehaviour, IDraggableObjectReceiver, IDraggabl
                 ClearIngredientsInStation();
                 Ingredient newIngredient = Instantiate(possibleNewIngredients[i], ingredientParent);
                 newIngredient.transform.localPosition = new Vector3(0, 0, -1);
-
+                
                 ingredientsInStation.Push(newIngredient);
+                newIngredient.GetComponent<Collider2D>().enabled = false;
                 
                 PlayAnimation();
                 soundToPlay.Play();
