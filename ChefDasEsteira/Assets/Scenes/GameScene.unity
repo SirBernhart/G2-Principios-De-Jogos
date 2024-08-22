@@ -977,7 +977,7 @@ MonoBehaviour:
   acceptableIngredients:
   - {fileID: 97793176056857069, guid: 22737fcbed14d474289ec4215d2fe30f, type: 3}
   - {fileID: 4228772686539655393, guid: 83097199ce24d944cb0d6ee5deb79d17, type: 3}
-  - {fileID: 3530906303223104983, guid: 837fdcb9dbb209f43bfb9140395b6986, type: 3}
+  - {fileID: 204927955868638669, guid: 8e5f3053afc541943995c86221a95005, type: 3}
   possibleNewIngredients:
   - {fileID: 5371742409367179448, guid: 171bea588ab7dbc49a1c4fb0b5c15b9f, type: 3}
   preparationDuration: 1
