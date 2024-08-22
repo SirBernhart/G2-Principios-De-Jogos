@@ -1,79 +1,76 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class WorkingStation : MonoBehaviour
+public class WorkingStation : MonoBehaviour, IDraggableObjectReceiver, IDraggableObjectProvider
 {
-    [SerializeField] private List<GameObject> acceptableIngredients;
-    [SerializeField] private List<GameObject> possibleNewIngredients;
-    [SerializeField] private KittenAnimationController animation;
+    [SerializeField] private List<Ingredient> acceptableIngredients;
+    [SerializeField] private List<Ingredient> possibleNewIngredients;
+    [SerializeField] private float preparationDuration = 2.5f;
+    [SerializeField] private Transform ingredientParent;
+    
+    [Header("Animation")]
+    [SerializeField] private AnimationClip preparationAnimation;
+    [SerializeField] private KittenAnimationController animationController;
+    [SerializeField] private Transform kittenPosition;
 
-    //Sounds
+    [Header("SFX")]
     [SerializeField] private AudioSource soundToPlay;
 
-    public bool TryPlaceIngredient(GameObject ingredient)
+    private Stack<Ingredient> ingredientsInStation = new();
+    private bool AcceptsAnyIngredient => acceptableIngredients.Count == 0;
+
+    public bool TryPlaceIngredient(Ingredient newIngredient)
     {
-        if (acceptableIngredients.Count == 0)
+        if (AcceptsAnyIngredient)
         {
-            ingredient.transform.SetParent(transform, false);
-            ingredient.transform.localPosition = new Vector3(0, 0, -1);
-            MakeNewIngredient();
+            return SetIngredientPositionAndTryMakeRecipe();
+        }
+
+        if (acceptableIngredients.Any(ing => ing.Id.Equals(newIngredient.Id)))
+        {
+            return SetIngredientPositionAndTryMakeRecipe();
+        }
+        
+        return false;
+
+        bool SetIngredientPositionAndTryMakeRecipe()
+        {
+            ingredientsInStation.Push(newIngredient);
+            newIngredient.SetNewParentContainer(ingredientParent);
+            TryMakeNewIngredient();
             return true;
         }
-
-        for(int i = 0 ; i < acceptableIngredients.Count ; ++i)
-        {
-            if(acceptableIngredients[i].name+"(Clone)" == ingredient.name)
-            {
-                ingredient.transform.SetParent(transform, false);
-                ingredient.transform.localPosition = new Vector3(0, 0, -1);
-                MakeNewIngredient();
-                return true;
-            }
-        }
-        return false;
     }
 
-    public bool MakeNewIngredient()
+    public bool TryMakeNewIngredient()
     {
-        Ingredient[] ingredientsInStation = LoadIngredientsInStation();
-
         // Ingredients that can be made in this working station
         for (int i = 0 ; i < possibleNewIngredients.Count; ++i)
         {
-            List<GameObject> requiredIngredients = possibleNewIngredients[i].GetComponent<Ingredient>().requiredIngredients;
-            if (requiredIngredients.Count != ingredientsInStation.Length)
+            List<Ingredient> requiredIngredients = possibleNewIngredients[i].requiredIngredients;
+            if (requiredIngredients.Count != ingredientsInStation.Count)
             {
                 continue;
             }
 
-            int j = 0;
             // Ingredients that are required to make the possible new ingredients
-            for (; j < requiredIngredients.Count; ++j)
+            foreach (Ingredient requiredIngredient in requiredIngredients)
             {
-                int k = 0;
-                // Ingredients that have been placed on the working station
-                for (; k < ingredientsInStation.Length; ++k)
-                {
-                    if ((requiredIngredients[j].name + "(Clone)") == ingredientsInStation[k].name)
-                    {
-                        break;
-                    }
-                }
-                // This new ingredient can't be made with the ingredients in the station
-                if(ingredientsInStation.Length == k)
+                Ingredient equalIngredient = ingredientsInStation.FirstOrDefault(ing => ing.Id.Equals(requiredIngredient.Id));
+                if (equalIngredient == null)
                 {
                     break;
                 }
-            }
-            if(j == requiredIngredients.Count)
-            {
+
                 ClearIngredientsInStation();
-                GameObject newIngredient = Instantiate(possibleNewIngredients[i], transform);
+                Ingredient newIngredient = Instantiate(possibleNewIngredients[i], ingredientParent);
                 newIngredient.transform.localPosition = new Vector3(0, 0, -1);
 
-                PlayCorrectAnimation();
+                ingredientsInStation.Push(newIngredient);
+                
+                PlayAnimation();
                 soundToPlay.Play();
                 return true;
             }
@@ -82,38 +79,54 @@ public class WorkingStation : MonoBehaviour
         return false;
     }
 
-    private Ingredient[] LoadIngredientsInStation()
-    {
-        return transform.GetComponentsInChildren<Ingredient>();
-    }
-
     private void ClearIngredientsInStation()
     {
-        for(int i = 0 ; i < transform.childCount ; ++i)
+        for(int i = ingredientsInStation.Count ; i > 0 ; --i)
         {
-            Destroy(transform.GetChild(i).gameObject);
+            Destroy(ingredientsInStation.Pop().gameObject);
         }
     }
 
-    public void PlayCorrectAnimation()
+    private void PlayAnimation()
     {
-        if(gameObject.name != "Maquina arroz")
+        if (preparationAnimation == null)
         {
-            animation.StopAllAnimations();
-
-            if (gameObject.name == "Tabua de cortar")
-            {
-                animation.AnimateCutting();
-            }
-            else if(gameObject.name == "Mesa de preparo")
-            {
-                animation.AnimatePreparing();
-            }
-            else if(gameObject.name == "Tatami")
-            {
-                animation.AnimateRolling();
-            }
+            return;
         }
+        
+        animationController.PlayAnimation(preparationAnimation, kittenPosition.position, preparationDuration);
     }
 
+    public bool TryReceiveDraggableObject(IDraggableObject obj)
+    {
+        if (obj is Ingredient ingredient)
+        {
+            return TryPlaceIngredient(ingredient);
+        }
+
+        return false;
+    }
+
+    public bool TryGetDraggableObject(out IDraggableObject obj, out Action<bool> onDragFinishedCallback)
+    {
+        if (ingredientsInStation.TryPeek(out Ingredient ingredient))
+        {
+            obj = ingredient;
+            
+            onDragFinishedCallback = OnDragFinishedCallback;
+            return true;
+        }
+
+        obj = null;
+        onDragFinishedCallback = null;
+        return false;
+    }
+
+    private void OnDragFinishedCallback(bool releasedOnValidPosition)
+    {
+        if (releasedOnValidPosition)
+        {
+            ingredientsInStation.Pop();
+        }
+    }
 }

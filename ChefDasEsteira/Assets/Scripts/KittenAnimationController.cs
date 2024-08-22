@@ -5,54 +5,31 @@ using UnityEngine;
 public class KittenAnimationController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
+    [SerializeField] private AnimationClip idleAnimationClip; 
     [SerializeField] private Vector3 idlePosition;
-    [SerializeField] private Vector3 cuttingPosition;
-    [SerializeField] private Vector3 rollingPosition;
-    [SerializeField] private Vector3 preparingPosition;
     private Coroutine coroutine;
-
-    public void StopAllAnimations()
+    public void PlayAnimation(AnimationClip animation, Vector2 positionToMoveTo, float duration)
     {
-        StopAllCoroutines();
-        animator.SetBool("Cortando", false);
-        animator.SetBool("Enrolando", false);
-        animator.SetBool("Preparando", false);
-        AnimateIdle();
+        animator.Play(animation.name);
+        transform.position = positionToMoveTo;
+        StartCoroutine(AnimationTimer(duration));
     }
-
-    public void AnimateCutting()
-    {
-        animator.SetBool("Idling", false);
-        transform.position = cuttingPosition;
-        animator.SetTrigger("Cortando");
-        coroutine = StartCoroutine(AnimationTimer(1f));
-    }
-
-    public void AnimateIdle()
-    {
-        transform.position = idlePosition;
-        animator.SetBool("Idling", true);
-    }
-
-    public void AnimateRolling()
-    {
-        animator.SetBool("Idling", false);
-        transform.position = rollingPosition;
-        animator.SetTrigger("Enrolando");
-        StartCoroutine(AnimationTimer(1f));
-    }
-
-    public void AnimatePreparing()
-    {
-        animator.SetBool("Idling", false);
-        transform.position = preparingPosition;
-        animator.SetTrigger("Preparando");
-        StartCoroutine(AnimationTimer(1f));
-    }
-
+    
     IEnumerator AnimationTimer(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
         StopAllAnimations();
+    }
+    
+    private void StopAllAnimations()
+    {
+        StopAllCoroutines();
+        AnimateIdle();
+    }
+    
+    public void AnimateIdle()
+    {
+        transform.position = idlePosition;
+        animator.Play(idleAnimationClip.name);
     }
 }

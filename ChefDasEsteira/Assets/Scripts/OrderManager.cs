@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class OrderManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> possibleOrders;
+    [SerializeField] private List<Ingredient> possibleOrders;
     [SerializeField] private GameManager gm;
     [SerializeField] private ScoreManager sm;
-    [HideInInspector]public List<GameObject> currentOrders = new List<GameObject>();
+    [HideInInspector]public List<Order> currentOrders = new ();
 
     [SerializeField] private float timeBetweenOrders;
-    [SerializeField] private GameObject orderSheet;
+    [SerializeField] private Order orderSheet;
     [SerializeField] private Transform orderSheetParent;
     [SerializeField] private Transform errorCounter;
     [SerializeField] private GameObject redX;
@@ -41,16 +41,18 @@ public class OrderManager : MonoBehaviour
 
     public void GetNewOrder()
     {
-        currentOrders.Add(Instantiate(orderSheet, orderSheetParent));
-        currentOrders[currentOrders.Count - 1].GetComponent<Order>().MakeAnOrder(possibleOrders);
+        Order order = Instantiate(orderSheet, orderSheetParent);
+        order.MakeAnOrder(possibleOrders);
+        currentOrders.Add(order);
+        
         newOrder.Play();
     }
 
-    public GameObject CheckIfCanCompleteOrder(List<GameObject> dishesInPlate)
+    public Order CheckIfCanCompleteOrder(List<Ingredient> dishesInPlate)
     {
         for(int i = 0 ; i < currentOrders.Count ; ++i)
         {
-            GameObject correctOrder = currentOrders[i].GetComponent<Order>().CheckIfDishesCompleteOrder(dishesInPlate);
+            Order correctOrder = currentOrders[i].GetComponent<Order>().CheckIfDishesCompleteOrder(dishesInPlate);
             if (correctOrder != null)
             {
                 return correctOrder;
@@ -59,7 +61,7 @@ public class OrderManager : MonoBehaviour
         return null;
     }
 
-    public void FailOrder(GameObject failedOrder)
+    public void FailOrder(Order failedOrder)
     {
         if(currentOrders.Count > 0)
         {
@@ -71,7 +73,7 @@ public class OrderManager : MonoBehaviour
         }
     }
 
-    public void CompleteOrder(GameObject completedOrder)
+    public void CompleteOrder(Order completedOrder)
     {
         sm.IncreaseScore(completedOrder.GetComponent<Order>().totalScore);
         currentOrders.Remove(completedOrder);

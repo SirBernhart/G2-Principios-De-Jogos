@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Order : MonoBehaviour
 {
-    private List<GameObject> dishesOrdered = new List<GameObject>();
+    private List<Ingredient> dishesOrdered = new ();
     [SerializeField] private GameObject orderTimerRef;
     [SerializeField] private List<Sprite> sheetSprites;
     private Image orderTimer;
@@ -24,12 +24,12 @@ public class Order : MonoBehaviour
         waitTimer -= Time.deltaTime;
         if(waitTimer <= 0)
         {
-            transform.parent.parent.GetComponent<OrderManager>().FailOrder(gameObject);
+            transform.parent.parent.GetComponent<OrderManager>().FailOrder(this);
         }
         orderTimer.fillAmount = waitTimer / maxWaitTime;
     }
 
-    public void MakeAnOrder(List<GameObject> possibleDishes)
+    public void MakeAnOrder(List<Ingredient> possibleDishes)
     {
         int numberOfDishes = 1;
 
@@ -45,7 +45,7 @@ public class Order : MonoBehaviour
         }
     }
 
-    public GameObject CheckIfDishesCompleteOrder(List<GameObject> dishes)
+    public Order CheckIfDishesCompleteOrder(List<Ingredient> dishes)
     {
         if(dishes.Count != dishesOrdered.Count)
         {
@@ -62,7 +62,7 @@ public class Order : MonoBehaviour
                 {
                     continue;
                 }
-                if((dishesOrdered[i].name+"(Clone)") == dishes[j].name)
+                if(dishesOrdered[i].Id.Equals(dishes[j].Id))
                 {
                     correctDishesIndexes.Add(j);
                     break;
@@ -74,7 +74,7 @@ public class Order : MonoBehaviour
             }
             if (correctDishesIndexes.Count == dishesOrdered.Count)
             {
-                return gameObject;
+                return this;
             }
         }
         return null;
