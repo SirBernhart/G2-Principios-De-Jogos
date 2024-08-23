@@ -4599,8 +4599,9 @@ GameObject:
   - component: {fileID: 2106353801}
   - component: {fileID: 2106353802}
   - component: {fileID: 2106353799}
+  - component: {fileID: 2106353803}
   m_Layer: 5
-  m_Name: Lixeira
+  m_Name: TrashCan
   m_TagString: Lixeira
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4726,6 +4727,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2.672114}
   m_EdgeRadius: 0
+--- !u!114 &2106353803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106353798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e723076f5618b5f4392e2fcfa7a65d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

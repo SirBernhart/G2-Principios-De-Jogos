@@ -51,7 +51,6 @@ public class DragAndDrop : MonoBehaviour
             }
             
             currentHeldObject.OnFinishDrag(true);
-            //TODO: add trash behaviour again
             
             currentHeldObject = null;
         }
