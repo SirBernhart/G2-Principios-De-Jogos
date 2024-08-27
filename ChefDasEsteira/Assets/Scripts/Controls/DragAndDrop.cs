@@ -44,14 +44,9 @@ public class DragAndDrop : MonoBehaviour
         {
             isDragging = false;
 
-            if (!TryPlaceDraggableObjectInReceiverUnderPointer())
-            {
-                currentHeldObject.OnFinishDrag(false);
-                return;
-            }
+            bool couldPlaceObjectUnderPointer = TryPlaceDraggableObjectInReceiverUnderPointer();
             
-            currentHeldObject.OnFinishDrag(true);
-            
+            currentHeldObject.OnFinishDrag(couldPlaceObjectUnderPointer);
             currentHeldObject = null;
         }
     }
