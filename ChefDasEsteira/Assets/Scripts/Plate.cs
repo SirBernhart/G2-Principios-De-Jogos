@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Plate : MonoBehaviour, IDraggableObjectReceiver
 {
-    public List<Ingredient> dishesInPlate = new ();
     [SerializeField] private OrderManager orderManagerRef;
     [SerializeField] private Transform dishSpotsParent;
     [SerializeField] private GameObject deliverButtonRef;
@@ -18,56 +17,15 @@ public class Plate : MonoBehaviour, IDraggableObjectReceiver
         }
     }
 
-    public bool TryToAddDish(Ingredient dish)
+    private void DeliverPlate(Ingredient ingredient)
     {
-        if(dishesInPlate.Count >= 4)
-        {
-            return false;
-        }
-        dishesInPlate.Add(dish);
-
-        for(int i = 0 ; i < dishSpots.Count ; ++i)
-        {
-            if(dishSpots[i].childCount == 0)
-            {
-                dish.transform.SetParent(dishSpots[i], false);
-                dish.transform.localPosition = new Vector3(0, 0, -1);
-            }
-        }
-        DeliverPlate();
-
-        return true;
-    }
-
-    public bool DeliverPlate()
-    {
-        //TODO OnPlateDelivered?.Invoke(dishesInPlate);
-        Order completedOrder = orderManagerRef.CheckIfCanCompleteOrder(dishesInPlate);
-        if(completedOrder != null)
-        {
-            ClearDishSpots();
-            orderManagerRef.CompleteOrder(completedOrder);
-            return true;
-        }
-        else
-        {
-            orderManagerRef.FailOrder(orderManagerRef.currentOrders[0]);
-            ClearDishSpots();
-        }
-        return false;
-    }
-
-    public void ClearDishSpots()
-    {
-        for(int i = 0 ; i < dishesInPlate.Count ; i++)
-        {
-            Destroy(dishesInPlate[i]);
-        }
-        dishesInPlate.Clear();
+        orderManagerRef.TryCompleteOrder(ingredient);
+        Destroy(ingredient.gameObject);
     }
 
     public bool TryReceiveDraggableObject(IDraggableObject obj)
     {
-        return TryToAddDish(obj as Ingredient);
+        DeliverPlate(obj as Ingredient);
+        return true;
     }
 }

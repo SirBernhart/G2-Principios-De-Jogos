@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class OrderManager : MonoBehaviour
@@ -39,7 +38,7 @@ public class OrderManager : MonoBehaviour
         }
     }
 
-    public void GetNewOrder()
+    private void GetNewOrder()
     {
         Order order = Instantiate(orderSheet, orderSheetParent);
         order.MakeAnOrder(possibleOrders);
@@ -48,17 +47,31 @@ public class OrderManager : MonoBehaviour
         newOrder.Play();
     }
 
-    public Order CheckIfCanCompleteOrder(List<Ingredient> dishesInPlate)
+    public void TryCompleteOrder(Ingredient dishInPlate)
     {
-        for(int i = 0 ; i < currentOrders.Count ; ++i)
+        foreach (Order order in currentOrders)
         {
-            Order correctOrder = currentOrders[i].GetComponent<Order>().CheckIfDishesCompleteOrder(dishesInPlate);
-            if (correctOrder != null)
+            if (order.CheckIfDishCompletesOrder(dishInPlate))
             {
-                return correctOrder;
+                CompleteOrder(order);
+                return;
             }
         }
-        return null;
+
+        FailFirstOrder();
+    }
+    
+    public void CompleteOrder(Order completedOrder)
+    {
+        sm.IncreaseScore(completedOrder.Score);
+        currentOrders.Remove(completedOrder);
+        Destroy(completedOrder.gameObject);
+        orderComplete.Play();
+    }
+
+    private void FailFirstOrder()
+    {
+        FailOrder(currentOrders[0]);
     }
 
     public void FailOrder(Order failedOrder)
@@ -68,16 +81,8 @@ public class OrderManager : MonoBehaviour
             gm.IncreaseErrorCount(1);
             Instantiate(redX, errorCounter);
             currentOrders.Remove(failedOrder);
-            Destroy(failedOrder);
+            Destroy(failedOrder.gameObject);
             orderFailed.Play();
         }
-    }
-
-    public void CompleteOrder(Order completedOrder)
-    {
-        sm.IncreaseScore(completedOrder.GetComponent<Order>().totalScore);
-        currentOrders.Remove(completedOrder);
-        Destroy(completedOrder);
-        orderComplete.Play();
     }
 }
