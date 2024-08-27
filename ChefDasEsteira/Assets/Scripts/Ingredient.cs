@@ -5,6 +5,8 @@ using UnityEngine;
 public class Ingredient : MonoBehaviour, IDraggableObject, IDraggableObjectProvider
 {
     [SerializeField] private string id;
+    [SerializeField] private Sprite ingredientSprite;
+    public Sprite Sprite => ingredientSprite;
     public List<Ingredient> requiredIngredients;
     public int pointsReward;
 
