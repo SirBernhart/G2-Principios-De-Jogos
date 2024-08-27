@@ -23,12 +23,8 @@ public class WorkingStation : MonoBehaviour, IDraggableObjectReceiver, IDraggabl
 
     public bool TryPlaceIngredient(Ingredient newIngredient)
     {
-        if (AcceptsAnyIngredient)
-        {
-            return SetIngredientPositionAndTryMakeRecipe();
-        }
-
-        if (acceptableIngredients.Any(ing => ing.Id.Equals(newIngredient.Id)))
+        if (AcceptsAnyIngredient
+            || acceptableIngredients.Any(ing => ing.Id.Equals(newIngredient.Id)))
         {
             return SetIngredientPositionAndTryMakeRecipe();
         }
